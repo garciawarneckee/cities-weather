@@ -24,13 +24,23 @@ export class WeatherService {
   }
 
   /** Gonna get the ids of Barcelona, Washington and London to use in the near future */
-  getDefaultCitiesWheathers(): Observable<Array<CityWeather>> {
+  getCitiesWheathersInterval(): Observable<Array<CityWeather>> {
     const observables = [ 
       this.getCityWeather("Barcelona"), 
       this.getCityWeather("Londres"),
       this.getCityWeather("Washington")
     ];
 
-    return Observable.forkJoin(observables);
+    return Observable.interval(3 * 60 *1000).switchMap(t => Observable.forkJoin(observables));
+  }
+
+  /** Get the current weathers for the first time */
+  getDefaultCitiesWeather() {
+   return Promise.all([
+    this.getCityWeather("Barcelona").toPromise(),
+    this.getCityWeather("Londres").toPromise(),
+    this.getCityWeather("Washington").toPromise()
+   ])
+   .then(response => response.map(r => r)); 
   }
 }
