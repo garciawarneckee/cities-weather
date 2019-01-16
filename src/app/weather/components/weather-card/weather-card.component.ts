@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { WeatherService } from "../../services/weather.service";
 import { CityWeather } from "../../model/weather-dto";
 
@@ -8,18 +8,9 @@ import { CityWeather } from "../../model/weather-dto";
   styleUrls: ["./weather-card.component.css"],
   providers: [WeatherService]
 })
-export class WeatherCardComponent implements OnInit {
+export class WeatherCardComponent {
   constructor(private weatherService: WeatherService) {}
 
-  cityWeather: CityWeather = null;
+  @Input() weather: CityWeather = null;
 
-  getBarcelonaWeather() {
-    this.weatherService
-      .getCityWeather("Barcelona")
-      .then(city => { this.cityWeather = city; });
-  }
-
-  ngOnInit(): void {
-    this.getBarcelonaWeather();
-  }
 }
