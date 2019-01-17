@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { WeatherBoardComponent } from './weather-board/weather-board.component';
+import { WeatherBoardComponent } from './components/weather-board/weather-board.component';
 
 const routes: Routes = [
   {

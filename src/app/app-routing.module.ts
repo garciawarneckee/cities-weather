@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/weather',
+    redirectTo: 'weather',
     pathMatch: 'full'
   }
 ];

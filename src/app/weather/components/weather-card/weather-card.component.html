@@ -1,0 +1,7 @@
+<div class="card-container">
+  <div *ngIf="weather" class="card-content">
+    <p>{{ weather.name }}</p>
+    <span>{{ weather.main.temp }} ° Celcius </span>
+    <p>{{ weather.dt | date: 'short' }}</p>
+  </div>
+</div>

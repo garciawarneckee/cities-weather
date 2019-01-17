@@ -1,0 +1,7 @@
+.board-container {
+  margin-left: 10em;
+  margin-right: 10em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
