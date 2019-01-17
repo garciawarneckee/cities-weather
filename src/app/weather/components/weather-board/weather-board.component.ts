@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { WeatherService } from '../../services/weather.service';
+import { WeatherService } from '../../services/weather-api//weather.service';
 import { CityWeather } from '../../model/weather-dto';
 import * as moment from 'moment';
 
@@ -16,11 +16,11 @@ export class WeatherBoardComponent implements OnInit {
 
   ngOnInit() {
     /**Getting weathers for first time */
-    this.weatherService.getDefaultCitiesWeather()
+    this.weatherService.getDefaultCitiesWeather(['Barcelona', 'Londres', 'Washington'])
       .then(weathers => this.weathers = weathers);
 
     /** Listening for new weathers for every 3 minutes */  
-    this.weatherService.getCitiesWheathersInterval()
+    this.weatherService.getCitiesWheathersInterval(3)
     .subscribe(weathers => { {
       const now = moment().format('LLL'); ;
       console.log(`Getting new weathers at + ${now}`);

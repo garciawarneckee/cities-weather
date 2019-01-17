@@ -1,7 +1,7 @@
 export class CityWeather {
   coord: Coordinates;
   weather: Weather;
-  base: String;
+  base: string;
   main: TimeIndicators;
   visibility: Number;
   wind: Wind;
@@ -9,7 +9,7 @@ export class CityWeather {
   dt: Date;
   sys: Sys;
   id: Number;
-  name: String;
+  name: string;
   cod: Number;
 }
 
@@ -20,9 +20,9 @@ class Coordinates {
 
 class Weather {
   id: Number;
-  main: String;
-  description: String;
-  icon: String;
+  main: string;
+  description: string;
+  icon: string;
 }
 
 class TimeIndicators {
@@ -46,7 +46,7 @@ class Sys {
   type: Number;
   id: Number;
   message: Number;
-  country: String;
+  country: string;
   sunrise: Date;
   sunset: Date;
 }

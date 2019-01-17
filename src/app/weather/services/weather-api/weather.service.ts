@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Headers, Http } from "@angular/http";
-import { CityWeather } from "../model/weather-dto";
+import { CityWeather } from "../../model/weather-dto";
 
 import "rxjs/add/operator/toPromise";
 import { Observable } from "rxjs";
@@ -24,23 +24,19 @@ export class WeatherService {
   }
 
   /** Gonna get the ids of Barcelona, Washington and London to use in the near future */
-  getCitiesWheathersInterval(): Observable<Array<CityWeather>> {
+  getCitiesWheathersInterval(minutes: number): Observable<Array<CityWeather>> {
     const observables = [ 
       this.getCityWeather("Barcelona"), 
       this.getCityWeather("Londres"),
       this.getCityWeather("Washington")
     ];
 
-    return Observable.interval(3 * 60 *1000).switchMap(t => Observable.forkJoin(observables));
+    return Observable.interval(minutes * 60 *1000).switchMap(t => Observable.forkJoin(observables));
   }
 
   /** Get the current weathers for the first time */
-  getDefaultCitiesWeather() {
-   return Promise.all([
-    this.getCityWeather("Barcelona").toPromise(),
-    this.getCityWeather("Londres").toPromise(),
-    this.getCityWeather("Washington").toPromise()
-   ])
-   .then(response => response.map(r => r)); 
+  getDefaultCitiesWeather(cities: Array<string>) {
+    const promises = cities.map(c => this.getCityWeather(c).toPromise());
+    return Promise.all(promises).then(response => response.map(r => r)); 
   }
 }
