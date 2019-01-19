@@ -8,12 +8,8 @@ import { CityWeather } from "../../model/weather-dto";
 })
 export class WeatherCardComponent {
   
-  private iconUrl = "http://openweathermap.org/img/w/"
-
   constructor() {}
 
   @Input() weather: CityWeather = null;
-
-
 
 }
