@@ -1,7 +1,11 @@
-<div class="card-container">
-  <div *ngIf="weather" class="card-content">
-    <p>{{ weather.name }}</p>
-    <span>{{ weather.main.temp }} ° Celcius </span>
-    <p>{{ weather.dt | date: 'short' }}</p>
-  </div>
-</div>
+<section *ngIf="weather" class="card-container">
+    <section class="card-temp-info">
+        <span class="card-temp">{{ weather.main.temp | number:'1.0-0'}} °</span>
+        <img class="card-icon" src="http://openweathermap.org/img/w/{{weather.weather[0].icon}}.png" />
+    </section>
+   
+    <p class="card-city">{{ weather.name }}</p>
+    <!-- We need to multiply the date by 1000 because it is retrieved by the api in unix formt
+    which is in seconds  -->
+    <p class="card-timpestamp">{{ weather.dt * 1000 | date: 'short' }}</p>
+  </section>

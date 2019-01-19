@@ -1,0 +1,11 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+$bg-color: #D6D6D6;
+
+html {  
+  body {
+    background-color: $bg-color;
+    font-family: 'Roboto';
+  }
+}
