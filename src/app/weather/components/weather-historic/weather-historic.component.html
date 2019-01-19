@@ -1,4 +1,5 @@
 <section class="historic-container">
+    <h1>Clima historico de {{ cityName }}</h1>
     <app-weather-hictoric-row 
       *ngFor="let weather of historic" 
       [weather]="weather">

@@ -1,4 +1,10 @@
 .row-container {
   display: flex;
   flex-direction: row;
+  background-color: white;
+  padding: 1em;
+  margin: 1em 0em;
+  align-items: center;
+  min-width: 300px;
+  justify-content: center;
 }

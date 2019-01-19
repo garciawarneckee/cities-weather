@@ -10,13 +10,13 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class WeatherHistoricComponent implements OnInit {
 
+  private cityName = this.route.snapshot.params["name"];
   private historic: Array<CityWeather> = null;
 
   constructor(private route: ActivatedRoute, private weatherStorage: WeatherStorageService) { }
 
   ngOnInit() {
-    const cityName = this.route.snapshot.params["name"];
-    this.historic = this.weatherStorage.getHistoricByCity(cityName);
+    this.historic = this.weatherStorage.getHistoricByCity(this.cityName);
   }
 
 }
