@@ -15,7 +15,7 @@ import { WeatherStorageService } from './services/weather-storage/weather-storag
     HttpModule,
     WeatherRoutingModule
   ],
-  providers: [WeatherService, WeatherStorageService],
+  providers: [WeatherStorageService],
   exports: [WeatherBoardComponent],
   declarations: [WeatherBoardComponent, WeatherCardComponent]
 })

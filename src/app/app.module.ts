@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
+import { WeatherModule } from './weather/weather.module';
+import { WeatherService } from './weather/services/weather-api/weather.service';
 
 @NgModule({
   declarations: [
@@ -11,9 +13,10 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    WeatherModule
   ],
-  providers: [],
+  providers: [WeatherService], //This is necessary regarding the component communication.
   bootstrap: [AppComponent]
 })
 export class AppModule { }
