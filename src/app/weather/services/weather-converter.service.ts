@@ -12,9 +12,9 @@ export class WeatherConverterService {
   private convertOne(dto: CityWeatherDTO): CityWeather {
     let weather = new CityWeather();
     weather.cityName = dto.name;
-    weather.description = dto.weather.description;
-    weather.temp = dto.main.temp;
-    weather.icon = dto.weather.icon;
+    weather.description = dto.weather[0].description;
+    weather.temp = Math.round(dto.main.temp);
+    weather.icon = dto.weather[0].icon;
     weather.weahterDate =  moment(new Date(dto.dt * 1000));
     weather.weatherReceivedDate = moment();
     return weather;

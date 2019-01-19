@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { CityWeatherDTO } from "../../model/weather-dto";
 import { Router } from "@angular/router";
+import CityWeather from "../../model/weather";
 
 @Component({
   selector: "app-weather-card",
@@ -11,9 +11,9 @@ export class WeatherCardComponent {
   
   constructor(private router: Router) {}
 
-  @Input() weather: CityWeatherDTO = null;
+  @Input() weather: CityWeather = null;
 
   goToHistoric() {
-    this.router.navigate([`/weather/${this.weather.name}`]);
+    this.router.navigate([`/weather/${this.weather.cityName}`]);
   }
 }

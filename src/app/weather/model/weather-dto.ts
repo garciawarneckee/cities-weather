@@ -3,49 +3,49 @@ export class CityWeatherDTO {
   weather: Weather;
   base: string;
   main: TimeIndicators;
-  visibility: Number;
+  visibility: number;
   wind: Wind;
   clouds: Clouds;
   dt: number;
   sys: Sys;
-  id: Number;
+  id: number;
   name: string;
-  cod: Number;
+  cod: number;
 }
 
 class Coordinates {
-  lat: Number;
-  lon: Number;
+  lat: number;
+  lon: number;
 }
 
 class Weather {
-  id: Number;
+  id: number;
   main: string;
   description: string;
   icon: string;
 }
 
 class TimeIndicators {
-  temp: Number;
-  pressure: Number;
-  humidity: Number;
-  tempmin: Number;
-  tempmax: Number;
+  temp: number;
+  pressure: number;
+  humidity: number;
+  tempmin: number;
+  tempmax: number;
 }
 
 class Wind {
-  speed: Number;
-  deg: Number;
+  speed: number;
+  deg: number;
 }
 
 class Clouds {
-  all: Number;
+  all: number;
 }
 
 class Sys {
-  type: Number;
-  id: Number;
-  message: Number;
+  type: number;
+  id: number;
+  message: number;
   country: string;
   sunrise: Date;
   sunset: Date;

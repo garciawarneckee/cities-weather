@@ -1,7 +1,7 @@
 <section *ngIf="weather" class="card-container">
     <section class="card-temp-info">
-        <span class="card-temp">{{ weather.temp | number:'1.0-0'}} °</span>
-        <img class="card-icon" src="http://openweathermap.org/img/w/{{weather.weather[0].icon}}.png" />
+        <span class="card-temp">{{ weather.temp}} °</span>
+        <img class="card-icon" src="http://openweathermap.org/img/w/{{weather.icon}}.png" />
     </section>
    
     <p class="card-city">{{ weather.cityName }}</p>
