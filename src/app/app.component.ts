@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs/Subscription';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
 
@@ -35,7 +35,6 @@ export class AppComponent implements OnInit {
    this.subscription = this.weatherService.getCitiesWheathersInterval(3, ['Barcelona', 'Londres', 'Washington'])
       .subscribe(weathers => {
         const now = moment().format('LLL'); ;
-        console.log(`Receiving and broadcasting new weathers at ${now}`);
         this.weathers = weathers;
         this.weatherService.broadcastNewWeathers(weathers);
         this.weatherStorage.bulkSave(weathers);
