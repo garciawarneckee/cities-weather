@@ -42,4 +42,6 @@ export class WeatherStorageService {
     return JSON.parse(historical) as Array<CityWeather>;
   }
 
+  clearStorage() { localStorage.clear(); }
+
 }

@@ -41,6 +41,9 @@ export class AppComponent implements OnInit {
       })
   }
 
-  ngOnDestroy() { this.subscription.unsubscribe(); }
+  ngOnDestroy() { 
+    this.weatherStorage.clearStorage();
+    this.subscription.unsubscribe(); 
+  }
 
 }
