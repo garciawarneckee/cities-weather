@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CityWeather } from '../../model/weather-dto';
+import CityWeather from '../../model/weather';
 
 /**
  * Responsible to store the weather in roder to provide a historic of them by city.
@@ -19,7 +19,7 @@ export class WeatherStorageService {
    * @param weather the new weather to save
    */
   save(weather: CityWeather): void {
-    const cityName = weather.name;
+    const cityName = weather.cityName;
     const storedWeather = localStorage.getItem(cityName);
     if(!storedWeather) {
       localStorage.setItem(cityName, JSON.stringify([weather]))
@@ -29,7 +29,6 @@ export class WeatherStorageService {
       localStorage.removeItem(cityName);
       localStorage.setItem(cityName, JSON.stringify(appendedWeather));
     }
-      
   }
 
   /** Execute the save function over all of the weathers passed as argument */

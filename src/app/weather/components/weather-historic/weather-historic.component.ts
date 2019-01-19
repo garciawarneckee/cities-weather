@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WeatherStorageService } from '../../services/weather-storage/weather-storage.service';
-import { CityWeather } from '../../model/weather-dto';
 import { ActivatedRoute } from '@angular/router';
+import CityWeather from '../../model/weather';
 
 @Component({
   selector: 'app-weather-historic',

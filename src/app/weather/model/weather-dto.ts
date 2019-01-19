@@ -1,4 +1,4 @@
-export class CityWeather {
+export class CityWeatherDTO {
   coord: Coordinates;
   weather: Weather;
   base: string;
@@ -6,7 +6,7 @@ export class CityWeather {
   visibility: Number;
   wind: Wind;
   clouds: Clouds;
-  dt: Date;
+  dt: number;
   sys: Sys;
   id: Number;
   name: string;

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { CityWeather } from '../../../model/weather-dto';
+import { CityWeatherDTO } from '../../../model/weather-dto';
 
 @Component({
   selector: 'app-weather-hictoric-row',
@@ -8,7 +8,7 @@ import { CityWeather } from '../../../model/weather-dto';
 })
 export class WeatherHictoricRowComponent implements OnInit {
 
-  @Input() weather: CityWeather = null;
+  @Input() weather: CityWeatherDTO = null;
 
   constructor() { }
 
