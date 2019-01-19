@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { WeatherModule } from './weather/weather.module';
-import { MatIconModule } from '@angular/material/icon';
 import { WeatherService } from './weather/services/weather-api/weather.service';
 import { WeatherStorageService } from './weather/services/weather-storage/weather-storage.service';
 
@@ -16,8 +15,7 @@ import { WeatherStorageService } from './weather/services/weather-storage/weathe
   imports: [
     BrowserModule,
     AppRoutingModule,
-    WeatherModule,
-    MatIconModule
+    WeatherModule
   ],
   providers: [WeatherService, WeatherStorageService],
   bootstrap: [AppComponent]

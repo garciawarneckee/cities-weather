@@ -56,7 +56,6 @@ export class WeatherService {
 
   /** Sends the new weathers to any subscriber  */
   broadcastNewWeathers(newWeathers: Array<CityWeather>) {
-    console.log('Sending new weathers');
     newWeathers.forEach(w => console.log(w));
     this.weathersSource.next(newWeathers);
   }

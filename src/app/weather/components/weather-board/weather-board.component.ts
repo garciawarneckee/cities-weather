@@ -1,8 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { WeatherService } from '../../services/weather-api//weather.service';
 import { CityWeather } from '../../model/weather-dto';
 import * as moment from 'moment';
 import { WeatherStorageService } from '../../services/weather-storage/weather-storage.service';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-weather-board',
@@ -12,10 +13,12 @@ import { WeatherStorageService } from '../../services/weather-storage/weather-st
 export class WeatherBoardComponent implements OnInit {
 
   weathers: Array<CityWeather> = null;
+  subscription: Subscription;
 
   constructor(private weatherService: WeatherService, 
     private weatherStorage: WeatherStorageService) { 
-      weatherService.getWeatherSource()
+      this.subscription = weatherService
+        .getWeatherSource()
         .subscribe( weathers => { this.weathers = weathers; })
     }
   
@@ -27,6 +30,10 @@ export class WeatherBoardComponent implements OnInit {
       this.weathers = weathers;
       this.weatherStorage.bulkSave(weathers);
     });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 }
