@@ -1,7 +1,23 @@
 <section class="historic-container">
-    <h1>Clima historico de {{ cityName }}</h1>
-    <app-weather-hictoric-row 
-      *ngFor="let weather of historic" 
-      [weather]="weather">
-    </app-weather-hictoric-row>
+  <h1>Historic weather of {{ cityName }}</h1>
+  <table class="table-container">
+    <thead class="table-header">
+      <tr>
+        <th>Temperature</th>
+        <th>Weather</th>
+        <th>Weahter took at</th>
+        <th>Weather received at</th>
+      </tr>
+    </thead>
+    <tbody class="table-row">
+      <tr *ngFor="let weather of historic">
+        <td class="row-temp">{{ weather.temp }} °C</td>
+        <td class="row-icon">
+          <img src="http://openweathermap.org/img/w/{{weather.icon}}.png" />
+        </td>
+        <td class="row-timestamp">{{ weather.weatherDate | date: 'short'}}</td>
+        <td class="row-timestamp">{{ weather.weatherReceivedDate | date: 'short' }}</td>
+      </tr>
+    </tbody>
+  </table>
 </section>

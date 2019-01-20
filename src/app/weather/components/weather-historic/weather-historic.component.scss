@@ -1,5 +1,38 @@
+$header-color: #1511A5;
+
+tr {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
 .historic-container {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
+.table-container {
+  display: flex;
+  min-width: 80%;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 1em;
+  overflow-x: auto;
+}
+
+.table-header {
+  background-color: $header-color;
+  color: white;
+  font-weight: bold;
+  padding: 1em;
+}
+
+.table-row {
+  background-color: white;
+}
+
+.row-temp { margin-left: 3em; }
+
+.row-icon { margin-left: 2em; }

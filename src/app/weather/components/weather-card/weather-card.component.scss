@@ -35,7 +35,13 @@ $button-color: #1511A5;
     font-size: 72px;
   }
 
-  .card-timpestamp {
+  .card-description {
+    font-size: 16px;
+    color: $third-color;
+    margin-left: auto;
+  }
+
+  .card-timestamp {
     font-size: 12px;
     color: $third-color;
     margin-left: auto;

@@ -7,6 +7,7 @@
     <p class="card-city">{{ weather.cityName }}</p>
     <!-- We need to multiply the date by 1000 because it is retrieved by the api in unix formt
     which is in seconds  -->
-    <p class="card-timpestamp">{{ weather.weatherDate | date: 'short' }}</p>
-    <button (click)="goToHistoric()" class="card-historic-button">VER HISTORICO</button>
+    <p class="card-description">{{ weather.description | titlecase }}</p>
+    <p class="card-timestamp">{{ weather.weatherDate | date: 'short' }}</p>
+    <button (click)="goToHistoric()" class="card-historic-button">SHOW HISTORIC</button>
   </section>
