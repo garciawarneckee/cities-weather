@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { WeatherService } from '../../services/weather-api//weather.service';
 import { CityWeatherDTO } from '../../model/weather-dto';
-import * as moment from 'moment';
 import { WeatherStorageService } from '../../services/weather-storage/weather-storage.service';
 import { Subscription } from 'rxjs/Subscription';
 import { WeatherConverterService } from '../../services/weather-converter.service';

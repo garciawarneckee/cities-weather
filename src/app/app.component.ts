@@ -5,7 +5,6 @@ import { WeatherStorageService } from './weather/services/weather-storage/weathe
 import { Subscription } from 'rxjs/Subscription';
 import { WeatherConverterService } from './weather/services/weather-converter.service';
 
-import * as moment from 'moment';
 import CityWeather from './weather/model/weather';
 
 /** 
@@ -35,17 +34,18 @@ export class AppComponent implements OnInit {
    * board and saving the new weather in the local storage.
    * */
   ngOnInit() {
-   this.subscription = this.weatherService
-    .getCitiesWheathersInterval(3, ['Barcelona', 'Londres', 'Washington'])
-    .subscribe(weathers => {
-      this.weathers = this.weatherConverter.convert(weathers);
-      this.weatherService.broadcastNewWeathers(this.weathers);
-      this.weatherStorage.bulkSave(this.weathers);
-    });
+    this.weatherStorage.clear();
+    this.subscription = this.weatherService
+      .getCitiesWheathersInterval(3, ['Barcelona', 'Londres', 'Washington'])
+      .subscribe(weathers => {
+        this.weathers = this.weatherConverter.convert(weathers);
+        this.weatherService.broadcastNewWeathers(this.weathers);
+        this.weatherStorage.bulkSave(this.weathers);
+      });
   }
 
   ngOnDestroy() { 
-    this.weatherStorage.clearStorage();
+    this.weatherStorage.clear();
     this.subscription.unsubscribe(); 
   }
 
