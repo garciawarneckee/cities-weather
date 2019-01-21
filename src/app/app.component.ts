@@ -1,10 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from "@angular/router"
 import { WeatherService } from './weather/services/weather-api/weather.service';
-import * as moment from 'moment';
-import { CityWeather } from './weather/model/weather-dto';
 import { WeatherStorageService } from './weather/services/weather-storage/weather-storage.service';
 import { Subscription } from 'rxjs/Subscription';
+import { WeatherConverterService } from './weather/services/weather-converter.service';
+
+import CityWeather from './weather/model/weather';
 
 /** 
  * Has the resposibility to maintain alive the service that updates the weathers every 3 minutes  
@@ -24,7 +25,8 @@ export class AppComponent implements OnInit {
   constructor(
     private router: Router, 
     private weatherService: WeatherService,
-    private weatherStorage: WeatherStorageService) {  }
+    private weatherStorage: WeatherStorageService,
+    private weatherConverter: WeatherConverterService) {  }
 
   /** 
    * Calling the weather API every 3 minutes, we need to make it here because the app component 
@@ -32,15 +34,19 @@ export class AppComponent implements OnInit {
    * board and saving the new weather in the local storage.
    * */
   ngOnInit() {
-   this.subscription = this.weatherService.getCitiesWheathersInterval(3, ['Barcelona', 'Londres', 'Washington'])
+    this.weatherStorage.clear();
+    this.subscription = this.weatherService
+      .getCitiesWheathersInterval(3, ['Barcelona', 'Londres', 'Washington'])
       .subscribe(weathers => {
-        const now = moment().format('LLL'); ;
-        this.weathers = weathers;
-        this.weatherService.broadcastNewWeathers(weathers);
-        this.weatherStorage.bulkSave(weathers);
-      })
+        this.weathers = this.weatherConverter.convert(weathers);
+        this.weatherService.broadcastNewWeathers(this.weathers);
+        this.weatherStorage.bulkSave(this.weathers);
+      });
   }
 
-  ngOnDestroy() { this.subscription.unsubscribe(); }
+  ngOnDestroy() { 
+    this.weatherStorage.clear();
+    this.subscription.unsubscribe(); 
+  }
 
 }

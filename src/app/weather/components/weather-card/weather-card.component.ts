@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { CityWeather } from "../../model/weather-dto";
+import { Router } from "@angular/router";
+import CityWeather from "../../model/weather";
 
 @Component({
   selector: "app-weather-card",
@@ -8,12 +9,11 @@ import { CityWeather } from "../../model/weather-dto";
 })
 export class WeatherCardComponent {
   
-  private iconUrl = "http://openweathermap.org/img/w/"
-
-  constructor() {}
+  constructor(private router: Router) {}
 
   @Input() weather: CityWeather = null;
 
-
-
+  goToHistoric() {
+    this.router.navigate([`/weather/${this.weather.cityName}`]);
+  }
 }

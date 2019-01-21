@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
-import { CityWeather } from '../../model/weather-dto';
 import { environment } from './../../../../environments/environment';
 
-import 'rxjs/add/operator/toPromise';
 import { Observable } from 'rxjs';
 import { Subject }    from 'rxjs/Subject';
+import 'rxjs/add/operator/toPromise';
+
+import CityWeather from '../../model/weather';
+import { CityWeatherDTO } from '../../model/weather-dto';
 
 @Injectable()
 export class WeatherService {
@@ -27,10 +29,10 @@ export class WeatherService {
    * Returns the weather of the city.
    * @param cityName name of the city which its weather is going to be requested 
    */
-  getCityWeather(cityName: String): Observable<CityWeather> {
+  getCityWeatherDTO(cityName: String): Observable<CityWeatherDTO> {
     return this.http
     .get(`${this.apiUrl}?q=${cityName}&units=metric&APPID=${this.apiKey}`)
-    .map( response => response.json() as CityWeather);
+    .map( response => response.json() as CityWeatherDTO);
   }
 
   /** 
@@ -38,8 +40,8 @@ export class WeatherService {
    * @param minutes number of minutes to be executed this method.
    * @param cities the names of the cities to which weathers are going to be brought
    * */
-  getCitiesWheathersInterval(minutes: number, cities: Array<string>): Observable<Array<CityWeather>> {
-    const observables: Array<Observable<CityWeather>> = cities.map(c => this.getCityWeather(c));
+  getCitiesWheathersInterval(minutes: number, cities: Array<string>): Observable<Array<CityWeatherDTO>> {
+    const observables: Array<Observable<CityWeatherDTO>> = cities.map(c => this.getCityWeatherDTO(c));
     return Observable.interval(minutes * 60 *1000).switchMap(t => Observable.forkJoin(observables));
   }
 
@@ -48,7 +50,7 @@ export class WeatherService {
    * @param cities the names of the cities to which weathers are going to be brought
    * */
   getDefaultCitiesWeather(cities: Array<string>) {
-    const promises = cities.map(c => this.getCityWeather(c).toPromise());
+    const promises = cities.map(c => this.getCityWeatherDTO(c).toPromise());
     return Promise.all(promises).then(response => response.map(r => r)); 
   }
 
@@ -56,8 +58,6 @@ export class WeatherService {
 
   /** Sends the new weathers to any subscriber  */
   broadcastNewWeathers(newWeathers: Array<CityWeather>) {
-    console.log('Sending new weathers');
-    newWeathers.forEach(w => console.log(w));
     this.weathersSource.next(newWeathers);
   }
 }

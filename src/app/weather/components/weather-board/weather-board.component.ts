@@ -1,8 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { WeatherService } from '../../services/weather-api//weather.service';
-import { CityWeather } from '../../model/weather-dto';
-import * as moment from 'moment';
+import { CityWeatherDTO } from '../../model/weather-dto';
 import { WeatherStorageService } from '../../services/weather-storage/weather-storage.service';
+import { Subscription } from 'rxjs/Subscription';
+import { WeatherConverterService } from '../../services/weather-converter.service';
+import CityWeather from '../../model/weather';
 
 @Component({
   selector: 'app-weather-board',
@@ -12,11 +14,15 @@ import { WeatherStorageService } from '../../services/weather-storage/weather-st
 export class WeatherBoardComponent implements OnInit {
 
   weathers: Array<CityWeather> = null;
+  subscription: Subscription;
 
-  constructor(private weatherService: WeatherService, 
-    private weatherStorage: WeatherStorageService) { 
-      weatherService.getWeatherSource()
-        .subscribe( weathers => { this.weathers = weathers; })
+  constructor(
+    private weatherService: WeatherService, 
+    private weatherStorage: WeatherStorageService,
+    private weatherConverter: WeatherConverterService) { 
+      this.subscription = weatherService
+        .getWeatherSource()
+        .subscribe( weathers => { this.weathers = weathers; });
     }
   
   /**Getting weathers for first time */
@@ -24,9 +30,13 @@ export class WeatherBoardComponent implements OnInit {
     this.weatherService
     .getDefaultCitiesWeather(['Barcelona', 'Londres', 'Washington'])
     .then(weathers => { 
-      this.weathers = weathers;
-      this.weatherStorage.bulkSave(weathers);
+      this.weathers = this.weatherConverter.convert(weathers);
+      this.weatherStorage.bulkSave(this.weathers);
     });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 }

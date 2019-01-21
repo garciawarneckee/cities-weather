@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { WeatherModule } from './weather/weather.module';
 import { WeatherService } from './weather/services/weather-api/weather.service';
 import { WeatherStorageService } from './weather/services/weather-storage/weather-storage.service';
+import { WeatherConverterService } from './weather/services/weather-converter.service';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { WeatherStorageService } from './weather/services/weather-storage/weathe
     AppRoutingModule,
     WeatherModule
   ],
-  providers: [WeatherService, WeatherStorageService],
+  providers: [WeatherService, WeatherStorageService, WeatherConverterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
