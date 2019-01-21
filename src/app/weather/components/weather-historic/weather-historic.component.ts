@@ -17,8 +17,7 @@ export class WeatherHistoricComponent implements OnInit {
   constructor(private route: ActivatedRoute, private weatherStorage: WeatherStorageService) { }
 
   ngOnInit() {
-    Observable.of(this.weatherStorage.getHistoricByCity(this.cityName))
-      .subscribe(historic => this.historic = historic) ;
+    this.historic = this.weatherStorage.getHistoricByCity(this.cityName);
   }
 
 }

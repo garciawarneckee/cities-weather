@@ -8,7 +8,6 @@ import { WeatherCardComponent } from './components/weather-card/weather-card.com
 import { WeatherService } from './services/weather-api/weather.service';
 import { WeatherStorageService } from './services/weather-storage/weather-storage.service';
 import { WeatherHistoricComponent } from './components/weather-historic/weather-historic.component';
-import { WeatherHictoricRowComponent } from './components/weather-historic/weather-hictoric-row/weather-hictoric-row.component';
 
 @NgModule({
   imports: [
@@ -21,7 +20,7 @@ import { WeatherHictoricRowComponent } from './components/weather-historic/weath
   declarations: [
     WeatherBoardComponent, 
     WeatherCardComponent, 
-    WeatherHistoricComponent, 
-    WeatherHictoricRowComponent]
+    WeatherHistoricComponent
+  ]
 })
 export class WeatherModule { }

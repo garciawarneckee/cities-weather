@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { WeatherHistoricComponent } from './weather-historic.component';
+import { HttpModule } from '@angular/http';
+import { ActivatedRoute } from '@angular/router';
+import { WeatherStorageService } from '../../services/weather-storage/weather-storage.service';
+import { Observable } from 'rxjs';
 
 describe('WeatherHistoricComponent', () => {
   let component: WeatherHistoricComponent;
@@ -8,6 +11,12 @@ describe('WeatherHistoricComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ HttpModule ],
+      providers: [ 
+        { provide: ActivatedRoute, 
+          useValue: { snapshot: { params: { name: 'aName' } } }
+        }, 
+        WeatherStorageService ],
       declarations: [ WeatherHistoricComponent ]
     })
     .compileComponents();
