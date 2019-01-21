@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { CityWeatherDTO } from '../model/weather-dto';
-import CityWeather from '../model/weather';
+import { CityWeatherDTO } from '../../model/weather-dto';
+import CityWeather from '../../model/weather';
 
 
 @Injectable()
@@ -8,7 +8,10 @@ export class WeatherConverterService {
 
   constructor() { }
 
-
+  /**
+   * Converts OpenWeahterMap's API domain object to proper domain object.
+   * @param dto API modeled object
+   */
   private convertOne(dto: CityWeatherDTO): CityWeather {
     let weather = new CityWeather();
     weather.cityName = dto.name;

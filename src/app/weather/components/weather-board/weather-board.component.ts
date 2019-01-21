@@ -3,7 +3,7 @@ import { WeatherService } from '../../services/weather-api//weather.service';
 import { CityWeatherDTO } from '../../model/weather-dto';
 import { WeatherStorageService } from '../../services/weather-storage/weather-storage.service';
 import { Subscription } from 'rxjs/Subscription';
-import { WeatherConverterService } from '../../services/weather-converter.service';
+import { WeatherConverterService } from '../../services/weather-converter/weather-converter.service';
 import CityWeather from '../../model/weather';
 
 @Component({
