@@ -4,14 +4,12 @@ import CityWeather from '../../model/weather';
 import { DebugElement } from '@angular/core';
 import { Router } from '@angular/router';
 import { By } from '@angular/platform-browser';
+import { DatePipe } from '@angular/common';
 
 describe('WeatherCardComponent', () => {
   let component: WeatherCardComponent;
   let fixture: ComponentFixture<WeatherCardComponent>;
-  let de: DebugElement;
-  let el: HTMLElement;
   const expectedWeather = new CityWeather('city', 15, 'cloudy', 'icon', new Date(), new Date());
-
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -34,12 +32,35 @@ describe('WeatherCardComponent', () => {
   });
 
   it('should render the right props when weather is provided', () => {
-    const expectedTemp = expectedWeather.temp;
+    const datePipe = new DatePipe('en-ES'); // Use your own locale
     fixture.detectChanges();
-    de = fixture.debugElement.query(By.css('.card-temp'));
-    el = de.nativeElement;
-    expect(el.textContent).toContain(expectedTemp.toString());
+    const temp = getElementBySelector('.card-temp');
+    const icon = getElementBySelector('.card-icon');
+    const city = getElementBySelector('.card-city');
+    const description = getElementBySelector('.card-description'); 
+    const timestamp = getElementBySelector('.card-timestamp');
+    const historicBtn = getElementBySelector('.card-historic-button');
+    expect(temp.textContent).toContain(expectedWeather.temp.toString());
+    expect(icon.getAttribute('src')).toContain(expectedWeather.icon);
+    expect(city.textContent).toContain(expectedWeather.cityName);
+    expect(description.textContent).toContain(capitalizeWord(expectedWeather.description));
+    expect(timestamp.textContent)
+      .toContain(datePipe.transform(expectedWeather.weatherDate, 'short'));
+    expect(historicBtn).toBeTruthy();
   })
+
+  /** Returns the element which content will be evaluated */
+  function getElementBySelector(className: string): HTMLElement {
+    return fixture.debugElement.query(By.css(className)).nativeElement;
+  }
+
+  /**
+   * TODO:// move it to a util class. 
+   * Return the word capitalized in the first letter */
+  function capitalizeWord(word: string) {
+    return word && word[0].toUpperCase() + word.slice(1);
+  }
+
 });
 
 
