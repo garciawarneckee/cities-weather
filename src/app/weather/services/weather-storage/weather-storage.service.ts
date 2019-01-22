@@ -32,7 +32,8 @@ export class WeatherStorageService {
   }
 
   /** Returns an array with the most recent weathers of the provided cities */
-  getMoreRecentWeathers(weatherKeys: Array<string>): Array<CityWeather> {
+  getMostRecentWeathers(weatherKeys: Array<string>): Array<CityWeather> {
+    if(weatherKeys.length === 0) return [];
     return weatherKeys.map(wk => this.getHistoricByCity(wk)[0]);
   }
 

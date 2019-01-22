@@ -63,7 +63,7 @@ describe('WeatherBoardComponent', () => {
     'should display empty weather message when no weathers are provide', 
     inject([WeatherStorageService], 
     (storageService: WeatherStorageService) => {
-      spyOn(storageService, 'getMoreRecentWeathers').and.returnValue(null);
+      spyOn(storageService, 'getMostRecentWeathers').and.returnValue(null);
       component.weathers = null;
       fixture.detectChanges();
       const board = getElementBySelector(fixture, '.board-container');

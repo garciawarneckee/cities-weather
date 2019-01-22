@@ -25,7 +25,7 @@ export class WeatherBoardComponent implements OnInit {
   /**Getting weathers for first time */
   ngOnInit() {
     this.weathers = this.weatherStorage
-      .getMoreRecentWeathers(this.weatherStorage.getCities());
+      .getMostRecentWeathers(this.weatherStorage.getCities());
   }
 
   ngOnDestroy() {
