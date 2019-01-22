@@ -56,5 +56,50 @@ describe('WeatherStorageService', () => {
       expect(historic).toEqual([]);
 }));
 
+it( 
+  'localStorage should retieve two items when bulk save is called', 
+  inject([WeatherStorageService], 
+    (service: WeatherStorageService) => {
+      const cw1 = new CityWeather('city1', 23, 'desc', 'icon', new Date(), new Date());
+      const cw2 = new CityWeather('city1', 23, 'desc', 'icon', new Date(), new Date());
+      service.bulkSave([cw1, cw2]);
+      const historic = service.getHistoricByCity('city1');
+      expect(historic.length).toBe(2);
+}));
+
+it( 
+    'getHistoricByCity should retieve have the two items for city1', 
+    inject([WeatherStorageService], 
+      (service: WeatherStorageService) => {
+      const cw1 = new CityWeather('city1', 23, 'desc', 'icon', new Date(), new Date());
+      const cw2 = new CityWeather('city1', 23, 'desc', 'icon', new Date(), new Date());
+      localStorage.setItem('city1', JSON.stringify([cw1, cw2]));
+      const historic = service.getHistoricByCity('city1');
+      expect(historic.length).toBe(2);
+  }));
+
+  it(
+    'localStorage should retrieve tree items if getCities is called', 
+    inject([WeatherStorageService],
+      (service: WeatherStorageService) => {
+        localStorage.setItem('city1', 'something');
+        localStorage.setItem('city2', 'something');
+        localStorage.setItem('city3', 'something');
+        const cities = service.getCities();
+        expect(cities.length).toBe(3);
+        expect(cities[0]).toBe('city1');
+        expect(cities[1]).toBe('city2');
+        expect(cities[2]).toBe('city3');
+    }));
+
+
+  it(
+    'localStorage should have 0 items if clear is called', 
+    inject([WeatherStorageService],
+      (service: WeatherStorageService) => {
+        service.clear();
+        expect(localStorage.length).toBe(0);
+    }));
+
 
 });
