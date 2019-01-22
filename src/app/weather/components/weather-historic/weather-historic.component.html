@@ -1,3 +1,6 @@
+<section *ngIf="!historic"> 
+    <h1 class="empty-board">There are not historic weathers to show</h1> 
+  </section>
 <section class="historic-container">
   <h1>Historic weather of {{ cityName }}</h1>
   <table class="table-container">
@@ -10,7 +13,7 @@
       </tr>
     </thead>
     <tbody class="table-row">
-      <tr *ngFor="let weather of historic">
+      <tr *ngFor="let weather of historic" class="row-weather">
         <td class="row-temp">{{ weather.temp }} °C</td>
         <td class="row-icon">
           <img src="http://openweathermap.org/img/w/{{weather.icon}}.png" />

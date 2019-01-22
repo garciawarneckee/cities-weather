@@ -1,14 +1,19 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
+import { HttpModule } from '@angular/http';
+import { Router } from '@angular/router';
 
 import { WeatherBoardComponent } from './weather-board.component';
 import { WeatherCardComponent } from '../weather-card/weather-card.component';
+
 import { WeatherService } from '../../services/weather-api/weather.service';
-import { HttpModule } from '@angular/http';
 import { WeatherStorageService } from '../../services/weather-storage/weather-storage.service';
 import { WeatherConverterService } from '../../services/weather-converter.service';
+
 import CityWeather from '../../model/weather';
+
 import { getElementBySelector } from '../../../utils/testing-utils';
-import { Router } from '@angular/router';
+import { MockStorageService } from '../../../../testing/mocks/MockStorageService';
+import { RouterStub } from '../../../../testing/mocks/RouterStub';
 
 describe('WeatherBoardComponent', () => {
   let component: WeatherBoardComponent;
@@ -24,14 +29,15 @@ describe('WeatherBoardComponent', () => {
       declarations: [ WeatherBoardComponent, WeatherCardComponent ],
       providers: [ 
         WeatherService, 
-        WeatherStorageService, 
-        WeatherConverterService,
-        { provide: Router , useClass: RouterStub }
+        WeatherConverterService, 
+        { provide: Router , useClass: RouterStub },
+        { provide: WeatherStorageService, useClass: MockStorageService },
       ],
       imports: [ HttpModule ]
     })
     .compileComponents();
   }));
+
 
   beforeEach(() => {
     fixture = TestBed.createComponent(WeatherBoardComponent);
@@ -50,15 +56,19 @@ describe('WeatherBoardComponent', () => {
     expect(cards.length).toBe(3);
   });
 
-  it('should display empty weather message when no weathers are proviede', () => {
-    component.weathers = null;
-    fixture.detectChanges();
-    const board = getElementBySelector(fixture, '.board-container');
-    const emptyMessage = getElementBySelector(fixture, '.empty-board');
-    expect(board).toBeNull();
-    expect(emptyMessage.textContent).toContain('There are not weathers to show');
-    
-  })
+  it(
+    'should display empty weather message when no weathers are provide', 
+    inject([WeatherStorageService], 
+    (storageService: WeatherStorageService) => {
+      spyOn(storageService, 'getMoreRecentWeathers').and.returnValue(null);
+      component.weathers = null;
+      fixture.detectChanges();
+      const board = getElementBySelector(fixture, '.board-container');
+      const emptyMessage = getElementBySelector(fixture, '.empty-board');
+      expect(board).toBeNull();
+      expect(emptyMessage.textContent).toContain('There are not weathers to show');
+  }));
+
 });
 
-class RouterStub { navigate(url: Array<string>) { return url; } } 
+
