@@ -54,19 +54,6 @@ describe('WeatherCardComponent', () => {
     fixture.detectChanges();
     const container = getElementBySelector('.card-container');
     expect(container).toBeNull();
-    /**  const temp = getElementBySelector('.card-temp');
-    const icon = getElementBySelector('.card-icon');
-    const city = getElementBySelector('.card-city');
-    const description = getElementBySelector('.card-description'); 
-    const timestamp = getElementBySelector('.card-timestamp');
-    const historicBtn = getElementBySelector('.card-historic-button');
-    expect(temp.textContent).toBeFalsy();
-    expect(icon.getAttribute('src')).toBeFalsy();
-    expect(city.textContent).toBeFalsy();
-    expect(description.textContent).toBeFalsy();
-    expect(timestamp.textContent).toBeFalsy();
-    expect(historicBtn).toBeFalsy(); */
-
   });
 
   /** Returns the element which content will be evaluated */
