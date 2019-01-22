@@ -16,4 +16,8 @@ export class MockStorageService {
       new CityWeather('city', 15, 'cloudy', 'icon', new Date(), new Date())
     ];
   }
+
+  getCities() {
+    return ['City1', 'City2', 'City3'];
+  }
 }

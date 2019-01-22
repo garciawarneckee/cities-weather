@@ -2,7 +2,6 @@ import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { WeatherService } from '../../services/weather-api//weather.service';
 import { WeatherStorageService } from '../../services/weather-storage/weather-storage.service';
 import { Subscription } from 'rxjs/Subscription';
-import { WeatherConverterService } from '../../services/weahter-converter/weather-converter.service';
 import CityWeather from '../../model/weather';
 
 @Component({

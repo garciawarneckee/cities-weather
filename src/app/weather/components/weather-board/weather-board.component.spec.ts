@@ -7,7 +7,7 @@ import { WeatherCardComponent } from '../weather-card/weather-card.component';
 
 import { WeatherService } from '../../services/weather-api/weather.service';
 import { WeatherStorageService } from '../../services/weather-storage/weather-storage.service';
-import { WeatherConverterService } from '../../services/weahter-converter/weather-converter.service';
+import { WeatherConverterService } from '../../services/weather-converter/weather-converter.service';
 
 import CityWeather from '../../model/weather';
 
@@ -48,13 +48,16 @@ describe('WeatherBoardComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should renders three weather-cards components', () => {
+  it(
+    'should renders three weather-cards components', 
+    inject([WeatherStorageService],
+    (service: WeatherStorageService) => {
     component.weathers = expectedWeathers;
     fixture.detectChanges();
     const board = getElementBySelector(fixture, '.board-container');
     const cards = board.querySelectorAll('app-weather-card');
     expect(cards.length).toBe(3);
-  });
+  }));
 
   it(
     'should display empty weather message when no weathers are provide', 
