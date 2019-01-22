@@ -21,6 +21,11 @@ export class WeatherConverterService {
   }
 
   convert(dtos: Array<CityWeatherDTO>): Array<CityWeather> {
-    return dtos.map(dto => this.convertOne(dto));
+    if(!dtos || dtos.length === 0) {
+      throw new Error('There are no objects to convert');
+    } else {
+      return dtos.map(dto => this.convertOne(dto));
+    }
+    
   }
 }

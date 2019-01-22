@@ -45,9 +45,6 @@ describe('WeatherConverterService', () => {
       deg: 48.45,
       speed: 5
     }
-;
-
-
   });
 
   it('should be created', inject([WeatherConverterService], (service: WeatherConverterService) => {
@@ -64,5 +61,19 @@ describe('WeatherConverterService', () => {
         expect(weather.cityName).toBe('City');
         expect(weather.description).toBe('description');
         expect(weather.weatherDate).toEqual(new Date(1548195884539 * 1000));
+  }));
+
+  it(
+    'should throw an error if there are not objects provided', 
+    inject([WeatherConverterService], 
+      (service: WeatherConverterService) => {
+        expect(function(){ service.convert(null) } ).toThrow(new Error('There are no objects to convert'));
+  }));
+
+  it(
+    'should throw an error if empty array is provided', 
+    inject([WeatherConverterService], 
+      (service: WeatherConverterService) => {
+        expect(function(){ service.convert([]) } ).toThrow(new Error('There are no objects to convert'));
   }));
 });
