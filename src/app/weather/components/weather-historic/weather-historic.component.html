@@ -1,7 +1,7 @@
 <section *ngIf="!historic"> 
-    <h1 class="empty-board">There are not historic weathers to show</h1> 
+    <h1 class="empty-historic">There are not historic weathers to show</h1> 
   </section>
-<section class="historic-container">
+<section class="historic-container" *ngIf="historic">
   <h1>Historic weather of {{ cityName }}</h1>
   <table class="table-container">
     <thead class="table-header">

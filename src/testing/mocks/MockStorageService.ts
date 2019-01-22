@@ -8,4 +8,12 @@ export class MockStorageService {
       new CityWeather('city', 15, 'cloudy', 'icon', new Date(), new Date())
     ];
   }
+
+  getHistoricByCity(cityName: string) {
+    return [
+      new CityWeather('city', 15, 'cloudy', 'icon', new Date(), new Date()),
+      new CityWeather('city', 15, 'cloudy', 'icon', new Date(), new Date()),
+      new CityWeather('city', 15, 'cloudy', 'icon', new Date(), new Date())
+    ];
+  }
 }
