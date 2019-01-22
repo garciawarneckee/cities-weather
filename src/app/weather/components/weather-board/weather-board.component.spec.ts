@@ -48,6 +48,16 @@ describe('WeatherBoardComponent', () => {
     const board = getElementBySelector(fixture, '.board-container');
     const cards = board.querySelectorAll('app-weather-card');
     expect(cards.length).toBe(3);
+  });
+
+  it('should display empty weather message when no weathers are proviede', () => {
+    component.weathers = null;
+    fixture.detectChanges();
+    const board = getElementBySelector(fixture, '.board-container');
+    const emptyMessage = getElementBySelector(fixture, '.empty-board');
+    expect(board).toBeNull();
+    expect(emptyMessage.textContent).toContain('There are not weathers to show');
+    
   })
 });
 
