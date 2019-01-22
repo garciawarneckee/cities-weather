@@ -17,21 +17,16 @@ export class WeatherBoardComponent implements OnInit {
 
   constructor(
     private weatherService: WeatherService, 
-    private weatherStorage: WeatherStorageService,
-    private weatherConverter: WeatherConverterService) { 
-      this.subscription = weatherService
+    private weatherStorage: WeatherStorageService) { 
+      this.subscription = this.weatherService
         .getWeatherSource()
         .subscribe( weathers => { this.weathers = weathers; });
     }
   
   /**Getting weathers for first time */
   ngOnInit() {
-    this.weatherService
-    .getDefaultCitiesWeather(['Barcelona', 'Londres', 'Washington'])
-    .then(weathers => { 
-      this.weathers = this.weatherConverter.convert(weathers);
-      this.weatherStorage.bulkSave(this.weathers);
-    });
+    this.weathers = this.weatherStorage
+      .getMoreRecentWeathers(['Barcelona', 'Londres', 'Washington']);
   }
 
   ngOnDestroy() {

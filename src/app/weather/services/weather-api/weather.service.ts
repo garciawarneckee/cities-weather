@@ -4,6 +4,7 @@ import { environment } from './../../../../environments/environment';
 
 import { Observable } from 'rxjs';
 import { Subject }    from 'rxjs/Subject';
+import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/toPromise';
 
 import CityWeather from '../../model/weather';
@@ -42,7 +43,9 @@ export class WeatherService {
    * */
   getCitiesWheathersInterval(minutes: number, cities: Array<string>): Observable<Array<CityWeatherDTO>> {
     const observables: Array<Observable<CityWeatherDTO>> = cities.map(c => this.getCityWeatherDTO(c));
-    return Observable.interval(minutes * 60 *1000).switchMap(t => Observable.forkJoin(observables));
+    return Observable.interval(minutes * 60 *1000)
+    .startWith(0)
+    .switchMap(t => Observable.forkJoin(observables));
   }
 
   /** 
