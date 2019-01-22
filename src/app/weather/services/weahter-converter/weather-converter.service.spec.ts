@@ -1,7 +1,7 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { WeatherConverterService } from './weather-converter.service';
-import { CityWeatherDTO } from '../model/weather-dto';
+import { CityWeatherDTO } from '../../model/weather-dto';
 
 describe('WeatherConverterService', () => {
 

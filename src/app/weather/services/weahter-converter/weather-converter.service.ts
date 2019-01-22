@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { CityWeatherDTO } from '../model/weather-dto';
-import CityWeather from '../model/weather';
+import { CityWeatherDTO } from '../../model/weather-dto';
+import CityWeather from '../../model/weather';
 
 
 @Injectable()

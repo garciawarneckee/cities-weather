@@ -3,7 +3,7 @@ import { Router } from "@angular/router"
 import { WeatherService } from './weather/services/weather-api/weather.service';
 import { WeatherStorageService } from './weather/services/weather-storage/weather-storage.service';
 import { Subscription } from 'rxjs/Subscription';
-import { WeatherConverterService } from './weather/services/weather-converter.service';
+import { WeatherConverterService } from './weather/services/weahter-converter/weather-converter.service';
 
 import CityWeather from './weather/model/weather';
 

@@ -46,6 +46,9 @@ export class WeatherStorageService {
     return JSON.parse(historical) as Array<CityWeather>;
   }
 
+  /** Return the name of the cities which are saved in localStorage */
+  getCities() { return Object.keys(localStorage); }
+
   clear() { localStorage.clear(); }
 
 }

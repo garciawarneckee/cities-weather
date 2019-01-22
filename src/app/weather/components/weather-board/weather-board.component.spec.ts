@@ -7,7 +7,7 @@ import { WeatherCardComponent } from '../weather-card/weather-card.component';
 
 import { WeatherService } from '../../services/weather-api/weather.service';
 import { WeatherStorageService } from '../../services/weather-storage/weather-storage.service';
-import { WeatherConverterService } from '../../services/weather-converter.service';
+import { WeatherConverterService } from '../../services/weahter-converter/weather-converter.service';
 
 import CityWeather from '../../model/weather';
 
