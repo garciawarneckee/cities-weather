@@ -1,14 +1,17 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { WeatherCardComponent } from './weather-card.component';
 import CityWeather from '../../model/weather';
-import { DebugElement } from '@angular/core/src/debug/debug_node';
+import { DebugElement } from '@angular/core';
 import { Router } from '@angular/router';
 import { By } from '@angular/platform-browser';
 
 describe('WeatherCardComponent', () => {
   let component: WeatherCardComponent;
   let fixture: ComponentFixture<WeatherCardComponent>;
+  let de: DebugElement;
+  let el: HTMLElement;
   const expectedWeather = new CityWeather('city', 15, 'cloudy', 'icon', new Date(), new Date());
+
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -23,7 +26,6 @@ describe('WeatherCardComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WeatherCardComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
     component.weather = expectedWeather;
   });
 
@@ -33,9 +35,10 @@ describe('WeatherCardComponent', () => {
 
   it('should render the right props when weather is provided', () => {
     const expectedTemp = expectedWeather.temp;
-    const selector = fixture.debugElement.query(By.css('.card-temp'));
-    const el = selector.nativeElement;
-    expect(el.textContent).toContain(expectedTemp);
+    fixture.detectChanges();
+    de = fixture.debugElement.query(By.css('.card-temp'));
+    el = de.nativeElement;
+    expect(el.textContent).toContain(expectedTemp.toString());
   })
 });
 
