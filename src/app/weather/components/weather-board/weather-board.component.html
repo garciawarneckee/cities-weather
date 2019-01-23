@@ -1,5 +1,6 @@
-<section *ngIf="!weathers"> 
-  <h1 class="empty-board">There are not weathers to show</h1> 
+
+<section *ngIf="!weathers" class="empty-board"> 
+  <h1 class="empty-message">There are not weathers to show</h1> 
 </section>
 <section *ngIf="weathers" name="weather-board" class="board-container">
   <app-weather-card 
