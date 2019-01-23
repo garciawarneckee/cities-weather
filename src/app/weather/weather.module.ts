@@ -19,6 +19,7 @@ import { WeatherHistoricComponent } from './components/weather-historic/weather-
   declarations: [
     WeatherBoardComponent, 
     WeatherCardComponent, 
-    WeatherHistoricComponent]
+    WeatherHistoricComponent
+  ]
 })
 export class WeatherModule { }

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { WeatherStorageService } from '../../services/weather-storage/weather-storage.service';
 import { ActivatedRoute } from '@angular/router';
 import CityWeather from '../../model/weather';
-import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-weather-historic',
@@ -12,13 +11,12 @@ import { Observable } from 'rxjs/Observable';
 export class WeatherHistoricComponent implements OnInit {
 
   private cityName = this.route.snapshot.params["name"];
-  private historic: Array<CityWeather> = null;
+  historic: Array<CityWeather> = null;
 
   constructor(private route: ActivatedRoute, private weatherStorage: WeatherStorageService) { }
 
   ngOnInit() {
-    Observable.of(this.weatherStorage.getHistoricByCity(this.cityName))
-      .subscribe(historic => this.historic = historic) ;
+    this.historic = this.weatherStorage.getHistoricByCity(this.cityName);
   }
 
 }

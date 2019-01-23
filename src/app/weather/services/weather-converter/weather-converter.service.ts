@@ -8,10 +8,7 @@ export class WeatherConverterService {
 
   constructor() { }
 
-  /**
-   * Converts OpenWeahterMap's API domain object to proper domain object.
-   * @param dto API modeled object
-   */
+
   private convertOne(dto: CityWeatherDTO): CityWeather {
     let weather = new CityWeather();
     weather.cityName = dto.name;
@@ -24,6 +21,11 @@ export class WeatherConverterService {
   }
 
   convert(dtos: Array<CityWeatherDTO>): Array<CityWeather> {
-    return dtos.map(dto => this.convertOne(dto));
+    if(!dtos || dtos.length === 0) {
+      throw new Error('There are no objects to convert');
+    } else {
+      return dtos.map(dto => this.convertOne(dto));
+    }
+    
   }
 }

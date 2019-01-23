@@ -1,9 +1,7 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { WeatherService } from '../../services/weather-api//weather.service';
-import { CityWeatherDTO } from '../../model/weather-dto';
 import { WeatherStorageService } from '../../services/weather-storage/weather-storage.service';
 import { Subscription } from 'rxjs/Subscription';
-import { WeatherConverterService } from '../../services/weather-converter/weather-converter.service';
 import CityWeather from '../../model/weather';
 
 @Component({
@@ -18,21 +16,16 @@ export class WeatherBoardComponent implements OnInit {
 
   constructor(
     private weatherService: WeatherService, 
-    private weatherStorage: WeatherStorageService,
-    private weatherConverter: WeatherConverterService) { 
-      this.subscription = weatherService
+    private weatherStorage: WeatherStorageService) { 
+      this.subscription = this.weatherService
         .getWeatherSource()
         .subscribe( weathers => { this.weathers = weathers; });
     }
   
   /**Getting weathers for first time */
   ngOnInit() {
-    this.weatherService
-    .getDefaultCitiesWeather(['Barcelona', 'Londres', 'Washington'])
-    .then(weathers => { 
-      this.weathers = this.weatherConverter.convert(weathers);
-      this.weatherStorage.bulkSave(this.weathers);
-    });
+    this.weathers = this.weatherStorage
+      .getMostRecentWeathers(this.weatherStorage.getCities());
   }
 
   ngOnDestroy() {

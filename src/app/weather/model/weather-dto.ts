@@ -1,6 +1,6 @@
 export class CityWeatherDTO {
   coord: Coordinates;
-  weather: Weather;
+  weather: Array<Weather>;
   base: string;
   main: TimeIndicators;
   visibility: number;

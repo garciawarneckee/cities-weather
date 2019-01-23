@@ -25,10 +25,16 @@ export class WeatherStorageService {
       localStorage.setItem(cityName, JSON.stringify([weather]))
     } else {
       const weatherArr = JSON.parse(storedWeather);
-      const appendedWeather = [...weatherArr, weather];
+      const appendedWeather = [weather, ...weatherArr];
       localStorage.removeItem(cityName);
       localStorage.setItem(cityName, JSON.stringify(appendedWeather));
     }
+  }
+
+  /** Returns an array with the most recent weathers of the provided cities */
+  getMostRecentWeathers(weatherKeys: Array<string>): Array<CityWeather> {
+    if(weatherKeys.length === 0) return [];
+    return weatherKeys.map(wk => this.getHistoricByCity(wk)[0]);
   }
 
   /** Execute the save function over all of the weathers passed as argument */
@@ -40,6 +46,9 @@ export class WeatherStorageService {
     if(!historical) throw new Error(`There is not historical weather for city`);
     return JSON.parse(historical) as Array<CityWeather>;
   }
+
+  /** Return the name of the cities which are saved in localStorage */
+  getCities() {  return Object.keys(localStorage); }
 
   clear() { localStorage.clear(); }
 
