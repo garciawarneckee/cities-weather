@@ -36,7 +36,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.weatherStorage.clear();
     this.subscription = this.weatherService
-      .getCitiesWheathersInterval(3, ['Barcelona', 'Londres', 'Washington'])
+      .getCitiesWheathersInterval(3, ['Barcelona', 'London', 'Washington'])
       .subscribe(weathers => {
         this.weathers = this.weatherConverter.convert(weathers);
         this.weatherService.broadcastNewWeathers(this.weathers);
