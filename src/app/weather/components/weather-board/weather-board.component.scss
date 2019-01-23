@@ -1,7 +1,20 @@
 .board-container {
-  margin-left: 10em;
-  margin-right: 10em;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  
+  height: inherit;
+  margin-left: 10em;
+  margin-right: 10em;
+}
+
+.empty-board {
+  height: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty-message {
+  font-size: 48px;
 }

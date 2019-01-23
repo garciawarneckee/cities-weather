@@ -36,3 +36,14 @@ tr {
 .row-temp { margin-left: 3em; }
 
 .row-icon { margin-left: 2em; }
+
+.empty-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: inherit;
+}
+
+.empty-historic {
+  font-size: 48px;
+}

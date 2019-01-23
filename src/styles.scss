@@ -4,8 +4,18 @@
 $bg-color: #D6D6D6;
 
 html {  
+  height: 100%;
   body {
+    height: 100%;
     background-color: $bg-color;
     font-family: 'Roboto';
   }
+}
+
+app-weather-board {
+  height: 100%;
+}
+
+app-weather-historic {
+  height: 100%;
 }
