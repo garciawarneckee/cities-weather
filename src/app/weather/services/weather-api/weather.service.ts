@@ -20,12 +20,6 @@ export class WeatherService {
 
   constructor(private http: Http) {}
 
-  /** Generic error handler */
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error); // for demo purposes only
-    return Promise.reject(error.message || error);
-  }
-
   /**
    * Returns the weather of the city.
    * @param cityName name of the city which its weather is going to be requested 
